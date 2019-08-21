@@ -1,0 +1,20 @@
+.character {
+  float: left;
+  border: solid black 5px;
+  margin-left: 10px;
+}
+
+.attack-button {
+  padding:15px;
+  clear:both;
+  overflow: auto;
+
+}
+
+.buttons {
+  display:block;
+  float: left;
+  clear: both;
+  overflow: auto;
+  margin-top:20px;
+}
