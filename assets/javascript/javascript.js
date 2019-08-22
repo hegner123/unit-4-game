@@ -89,8 +89,3 @@ function playState () {
 
 
   });
-
-  // admiral-akbar
-  // bobba-fett
-  // chewbaca
-  // darth-vader
