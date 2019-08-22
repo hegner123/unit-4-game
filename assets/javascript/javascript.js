@@ -26,12 +26,15 @@ var game = {
         game.userCharacter = "";
       }
       $(this).addClass("user-chara-sel");
+      $(this).removeClass("not-selected")
       game.userCharacter = $(this);
-      game.userCharacterSet = true,
+      game.userCharacterSet = true;
+
+      $(".not-selected").appendTo("#enemy-select");
       game.battleState = game.computerCharacterSelect();
-      
       console.log(game);
       return "characterSelect"
+      
     })
   },
   computerCharacterSelect: function () {
@@ -46,10 +49,13 @@ var game = {
         $(game.computerCharacter).removeClass("comp-chara-sel");
         game.computerCharacter = "";
       }
-      $(this).addClass("comp-chara-sel");
+     
       game.computerCharacter = $(this);
       game.computerCharacterSet = true,
-      game.battleState = ""
+      
+      $(this).addClass("comp-chara-sel");
+      $(this).removeClass("not-selected");
+      $(".comp-chara-sel").appendTo("#attack-target");
       
       return "compCharacterSelect"
 
@@ -70,22 +76,21 @@ function pauseState(){
 function playState () {
   game.battleState = game.characterSelect();
 
-  $(game.characters).click(function () {
-  if (game.userCharacterSet === false) {
-    ;
-  } else {
-;
-  };
-})
+  
+  }
+
+  return "playState";})
+
 
   
-  return "playState";
-}
 
 
-
-
-
-
-
-  });
+  function checkBattleState () {
+    $(game.characters).click(function (){
+      if ((game.userCharacter === "") && (game.computerCharacter === "")) {
+        ;
+      } else {
+        game.battleState = "";
+      }
+      
+    })}

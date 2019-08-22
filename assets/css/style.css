@@ -26,3 +26,13 @@
 .comp-chara-sel {
   border-color:green;
 }
+
+#character-select {
+  float: left;
+  clear: both;
+}
+
+#enemy-select {
+  float: left;
+  clear: both;
+}
