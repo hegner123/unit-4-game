@@ -36,3 +36,13 @@
   float: left;
   clear: both;
 }
+
+#attack-button {
+  float: left;
+  clear: both;
+
+}
+
+.battleground {
+  margin: 10rem;
+}

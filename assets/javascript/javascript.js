@@ -22,11 +22,11 @@ var game = {
       if (game.userCharacter === ""){
 ;
       } else {
-        $(game.userCharacter).removeClass("user-chara-sel");
-        game.userCharacter = "";
+        ;
       }
       $(this).addClass("user-chara-sel");
-      $(this).removeClass("not-selected")
+      $(this).removeClass("not-selected");
+      
       game.userCharacter = $(this);
       game.userCharacterSet = true;
 
@@ -45,8 +45,6 @@ var game = {
         ;
         
       } else  {
-
-        $(game.computerCharacter).removeClass("comp-chara-sel");
         game.computerCharacter = "";
       }
      
