@@ -1,75 +1,86 @@
 $( document ).ready(function() {
+
+
+
+var game = {
+  state: pauseState(),
+  battleState: "",
+  userCharacter: "" ,
+  userCharacterSet: false,
+  computerCharacter: "",
+  computerCharacterSet: false,
+  modifiers: "",
+  character1: $("#admiral-akbar"),
+  character2: $("#bobba-fett"),
+  character3: $("#chewbaca"),
+  character4: $("#darth-vader"),
+  characters: $(".character"),
+
+  characterSelect: function () {
+    
+    $(game.characters).click(function () {
+      if (game.userCharacter === ""){
+;
+      } else {
+        $(game.userCharacter).removeClass("user-chara-sel");
+        game.userCharacter = "";
+      }
+      $(this).addClass("user-chara-sel");
+      game.userCharacter = $(this);
+      game.userCharacterSet = true,
+      game.battleState = game.computerCharacterSelect();
+      
+      console.log(game);
+      return "characterSelect"
+    })
+  },
+  computerCharacterSelect: function () {
+    console.log(game);
+    $(game.characters).click(function () {
+
+      if (game.computerCharacter === "") {
+        ;
+        
+      } else  {
+
+        $(game.computerCharacter).removeClass("comp-chara-sel");
+        game.computerCharacter = "";
+      }
+      $(this).addClass("comp-chara-sel");
+      game.computerCharacter = $(this);
+      game.computerCharacterSet = true,
+      game.battleState = ""
+      
+      return "compCharacterSelect"
+
+    })
+  },
   
-  var game = {
-    state:pauseState()
-
-  }
-
+}
 
 function pauseState(){
-  ;
+
+  $(document).click(function(){
+    game.state = $(playState());
+  });
+  return "pauseState";
 }
 
 
-var character1 = document.getElementById("admiral-akbar");
+function playState () {
+  game.battleState = game.characterSelect();
 
-
-
-var admiralAkbar = {
-    health: 100,
-    attack: 25,
-    
-  }
-
-  function select(character) {
-    $(character).click(function() {
-      $(character).css("border-color","red");
-    });
-    $("#darth-vader, #chewbaca, #bobba-fett").click(function () {
-      $(character).css("border-color","black")
-    })
-  }
+  $(game.characters).click(function () {
+  if (game.userCharacterSet === false) {
+    ;
+  } else {
+;
+  };
+})
 
   
-  
-select(character1);
-
-
-   
-
-
-  var boobaFett = {
-    health: 100,
-    attack: 25,
-    
-  }
-
-  var chewbaca = {
-    health: 100,
-    attack: 25,
-    
-  }
-
-  var darthVader = {
-    health: 100,
-    attack: 25,
-    
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  return "playState";
+}
 
 
 
@@ -79,4 +90,7 @@ select(character1);
 
   });
 
-
+  // admiral-akbar
+  // bobba-fett
+  // chewbaca
+  // darth-vader

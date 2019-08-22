@@ -19,3 +19,10 @@
   margin-top:20px;
 }
 
+.user-chara-sel {
+  border-color:red;
+}
+
+.comp-chara-sel {
+  border-color:green;
+}
