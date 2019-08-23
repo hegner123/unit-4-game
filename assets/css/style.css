@@ -50,3 +50,11 @@
 .smaller {
   width:25%;
 }
+
+
+
+.admiralAkbar {
+  background-image: url(../images/admiral_akbar.jpg);
+  background-color: black;
+  padding:auto;
+}

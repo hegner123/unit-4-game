@@ -2,35 +2,42 @@ $( document ).ready(function() {
 
 // create div's with images with for loop
 
-for (i=0;i<letters.length;i++) {
-  var letterBtn = $("<button>");
-    letterBtn.addClass("letter-button letter letter-button-color")
-    letterBtn.attr("data-letter",letters[i]);
-    letterBtn.text(letters[i]);
-    letterBtn.appendTo("#buttons");
+var characters = ["admiralAkbar", "bobbaFett", "chewbaca", "darthVader"];
+
+for (i=0;i<characters.length;i++) {
+  var characterbtn = $("<div>");
+    characterbtn.addClass("chara-button character not-selected " + characters[i]);
+    // characterbtn.attr("character-name", characters[i]);
+    characterbtn.text(characters[i]);
+    characterbtn.appendTo("#char-sel");
+    console.log(characterbtn);
 }
 
-$(".letter-button").on("click", function (){
-  var fridgeMagnet = $("<div>");
-    fridgeMagnet.addClass("letter fridge-color");
-    fridgeMagnet.text($(this).attr("data-letter"));
-    fridgeMagnet.appendTo("#display");
+// $(".chara-button").on("click", function (){
+//   var fridgeMagnet = $("<div>");
+//     fridgeMagnet.addClass("letter fridge-color");
+//     fridgeMagnet.text($(this).attr("data-letter"));
+//     fridgeMagnet.appendTo("#char-sel");
 
-})
+// })
 
 
   var admiralAkbar = {
-    select: $(".admiral-akbar"),
+    
     health: 100,
     attack: 20,
     counterAttack:25,
     modifier: "",
+    name: function (){
+      return "admiral akbar";
+    },
   }
 
   
+  
 
   var bobbaFett = {
-    select: $(".bobba-fett"),
+    
     health: 100,
     attack: 20,
     counterAttack:25,
@@ -38,7 +45,7 @@ $(".letter-button").on("click", function (){
   }
 
   var chewbaca = {
-    select: $(".chewbaca"),
+    
     health: 100,
     attack: 20,
     counterAttack:25,
@@ -46,7 +53,7 @@ $(".letter-button").on("click", function (){
   }
 
   var darthVader = {
-    select: $(".dath-vader"),
+    
     health: 100,
     attack: 20,
     counterAttack:25,
