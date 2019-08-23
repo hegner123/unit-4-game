@@ -69,9 +69,14 @@ $( document ).ready(function() {
 
   function attackState(){
     $("#attack-button").on("click", function (){
-      game.userCharacter.health = (game.userCharacter.health - game.compCharacter.attack);
+      if (game.step < 3) {
+        ;
+        game.step += 1;
+      } else {
       console.log(game.userCharacter);
       console.log(game.compCharacter);
+      }
+      
     })
     ;
   }

@@ -44,5 +44,9 @@
 }
 
 .battleground {
-  margin: 10rem;
+  margin: 5rem;
+}
+
+.smaller {
+  width:25%;
 }
