@@ -1,94 +1,90 @@
 $( document ).ready(function() {
 
-
-
-var game = {
-  state: pauseState(),
-  battleState: "",
-  userCharacter: "" ,
-  userCharacterSet: false,
-  computerCharacter: "",
-  computerCharacterSet: false,
-  modifiers: "",
-  character1: $("#admiral-akbar"),
-  character2: $("#bobba-fett"),
-  character3: $("#chewbaca"),
-  character4: $("#darth-vader"),
-  characters: $(".character"),
-
-  characterSelect: function () {
+  var admiralAkbar = {
     
-    $(game.characters).click(function () {
-      if (game.userCharacter === ""){
-;
-      } else {
-        ;
-      }
-      $(this).addClass("user-chara-sel");
-      $(this).removeClass("not-selected");
-      
-      game.userCharacter = $(this);
-      game.userCharacterSet = true;
-
-      $(".not-selected").appendTo("#enemy-select");
-      game.battleState = game.computerCharacterSelect();
-      console.log(game);
-      return "characterSelect"
-      
-    })
-  },
-  computerCharacterSelect: function () {
-    console.log(game);
-    $(game.characters).click(function () {
-
-      if (game.computerCharacter === "") {
-        ;
-        
-      } else  {
-        game.computerCharacter = "";
-      }
-     
-      game.computerCharacter = $(this);
-      game.computerCharacterSet = true,
-      
-      $(this).addClass("comp-chara-sel");
-      $(this).removeClass("not-selected");
-      $(".comp-chara-sel").appendTo("#attack-target");
-      
-      return "compCharacterSelect"
-
-    })
-  },
-  
-}
-
-function pauseState(){
-
-  $(document).click(function(){
-    game.state = $(playState());
-  });
-  return "pauseState";
-}
-
-
-function playState () {
-  game.battleState = game.characterSelect();
-
-  
+    health: 100,
+    attack: 20,
+    counterAttack:25,
+    modifier: "",
   }
 
-  return "playState";})
+  var admiralAkbar = $(".admiral-akbar");
+
+  var bobbaFett = {
+    health: 100,
+    attack: 20,
+    counterAttack:25,
+    modifier: "",
+  }
+
+  var chewbaca = {
+    health: 100,
+    attack: 20,
+    counterAttack:25,
+    modifier: "",
+  }
+
+  var darthVader = {
+    health: 100,
+    attack: 20,
+    counterAttack:25,
+    modifier: "",
+  }
+
+ 
+
+
+  function charaSel (){
+    $(".character").on("click", function(){
+      if (game.step < 1){
+        game.userCharacter = this;
+      $(this).addClass("user-chara-sel");
+      $(this).removeClass("not-selected");
+      $(".not-selected").appendTo("#enemy-select");
+      game.state = compCharacter();
+      console.log(game);
+      game.step += 1;
+      } else {
+        ;
+      }
+      
+    })
+  }
+
+  function compCharacter(){
+    $(".character").on("click", function(){
+      if (game.step < 2){
+        game.compCharacter = this;
+      $(this).addClass("comp-chara-sel");
+      $(".comp-chara-sel").appendTo("#attack-target");
+      game.state = attackState();
+      console.log(game);
+      game.step += 1;
+      } else {
+        ;
+      }
+      
+    })
+  }
+
+  function attackState(){
+    $("#attack-button").on("click", function (){
+      game.userCharacter.health = (game.userCharacter.health - game.compCharacter.attack);
+      console.log(game.userCharacter);
+      console.log(game.compCharacter);
+    })
+    ;
+  }
+ 
+  var game = {
+    state: charaSel(),
+    userCharacter: "",
+    step:0,
+    compCharacter: "",
+  }
 
 
   
 
 
-  function checkBattleState () {
-    $(game.characters).click(function (){
-      if ((game.userCharacter === "") && (game.computerCharacter === "")) {
-        ;
-      } else {
-        game.battleState = "";
-      }
-      
-    })}
+})
