@@ -8,18 +8,17 @@ for (i=0;i<characters.length;i++) {
   var characterbtn = $("<div>");
     characterbtn.addClass("chara-button character not-selected " + characters[i]);
     // characterbtn.attr("character-name", characters[i]);
-    characterbtn.text(characters[i]);
     characterbtn.appendTo("#char-sel");
     console.log(characterbtn);
+    characterImage();
+    function characterImage() {
+      var charImg = $("<img>");
+      charImg.addClass("imgClear");
+      charImg.appendTo(characterbtn);
+      charImg.attr("src", "assets/images/" + characters[i] + ".jpg");
+    }
 }
 
-// $(".chara-button").on("click", function (){
-//   var fridgeMagnet = $("<div>");
-//     fridgeMagnet.addClass("letter fridge-color");
-//     fridgeMagnet.text($(this).attr("data-letter"));
-//     fridgeMagnet.appendTo("#char-sel");
-
-// })
 
 
   var admiralAkbar = {
@@ -28,13 +27,7 @@ for (i=0;i<characters.length;i++) {
     attack: 20,
     counterAttack:25,
     modifier: "",
-    name: function (){
-      return "admiral akbar";
-    },
   }
-
-  
-  
 
   var bobbaFett = {
     
@@ -99,7 +92,7 @@ for (i=0;i<characters.length;i++) {
   function attackState(){
     $("#attack-button").on("click", function (){
       if (game.step < 3) {
-        ;
+        $(".chara-sel").css("height", "50px");
         game.step += 1;
       } else {
       console.log(game.userCharacter);
@@ -122,3 +115,7 @@ for (i=0;i<characters.length;i++) {
 
 
 })
+
+
+
+assets/images/admiral_akbar.jpg

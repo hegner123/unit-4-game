@@ -40,7 +40,12 @@
 #attack-button {
   float: left;
   clear: both;
+}
 
+#attack-target {
+  float: left;
+  clear: both;
+  margin-top:1rem;
 }
 
 .battleground {
@@ -51,10 +56,9 @@
   width:25%;
 }
 
-
-
-.admiralAkbar {
-  background-image: url(../images/admiral_akbar.jpg);
-  background-color: black;
-  padding:auto;
+.imgClear {
+  float: left;
+  clear: both;
+  overflow: auto;
 }
+
