@@ -1,16 +1,20 @@
 $( document ).ready(function() {
 
+// create div's with images with for loop
+
+
   var admiralAkbar = {
-    
+    select: $(".admiral-akbar"),
     health: 100,
     attack: 20,
     counterAttack:25,
     modifier: "",
   }
 
-  var admiralAkbar = $(".admiral-akbar");
+  
 
   var bobbaFett = {
+    select: $(".bobba-fett"),
     health: 100,
     attack: 20,
     counterAttack:25,
@@ -18,6 +22,7 @@ $( document ).ready(function() {
   }
 
   var chewbaca = {
+    select: $(".chewbaca"),
     health: 100,
     attack: 20,
     counterAttack:25,
@@ -25,6 +30,7 @@ $( document ).ready(function() {
   }
 
   var darthVader = {
+    select: $(".dath-vader"),
     health: 100,
     attack: 20,
     counterAttack:25,
