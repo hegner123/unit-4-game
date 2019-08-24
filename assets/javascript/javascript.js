@@ -10,7 +10,7 @@ var computerCharacter = "";
     data:"admiralAkbar",
     hp: 100,
     attack: 20,
-    counterAttack: 25,
+    counterAttack: 5,
     modifier: "",
     display: "Admiral Akbar",
   }
@@ -19,7 +19,7 @@ var computerCharacter = "";
     data:"bobbaFett",
     hp: 100,
     attack: 20,
-    counterAttack: 25,
+    counterAttack: 5,
     modifier: "",
     display: "Bobba Fett",
   }
@@ -28,7 +28,7 @@ var computerCharacter = "";
     data:"chewbaca",
     hp: 100,
     attack: 20,
-    counterAttack: 25,
+    counterAttack: 5,
     modifier: "",
     display: "Chewbaca"
   }
@@ -36,8 +36,8 @@ var computerCharacter = "";
   var darthVader = {
     data:"darthVader",
     hp: 100,
-    attack: 20,
-    counterAttack: 25,
+    attack: 100,
+    counterAttack: 1000,
     modifier: "",
     display: "Darth Vader",
   }
@@ -102,7 +102,6 @@ for (i=0;i<characters.length;i++) {
         } else if ( computerCharacter.data == characterObject[j].data) {
           computerCharacter = characterObject[j];
         } else {
-          
           console.log(userCharacter);
           console.log(computerCharacter);
         }
@@ -110,12 +109,32 @@ for (i=0;i<characters.length;i++) {
 
       fightAction();
       $(".after-action").text(userCharacter.display + " :" + userCharacter.hp + "     " + computerCharacter.display + " :" + computerCharacter.hp);
+      checkGameState();
 
     });}
     
   function fightAction () {
-  userCharacter.hp = userCharacter.hp - computerCharacter.attack;
+  userCharacter.hp = userCharacter.hp - computerCharacter.counterAttack;
   computerCharacter.hp = computerCharacter.hp - userCharacter.attack;
+}
+
+function checkGameState () {
+  if (userCharacter.hp < 0) {
+    game.step = 0;
+    userCharacter = "";
+    computerCharacter = "" ;
+    $(".comp-chara-sel").empty();
+    $(".character").removeClass("user-chara-sel comp-chara-sel");
+   
+    $(".after-action").empty();  } else if (computerCharacter.hp == 0) {
+    game.step = 0;
+    userCharacter = "";
+    computerCharacter = "" ;
+    $(".comp-chara-sel").empty();
+    $(".character").removeClass("user-chara-sel comp-chara-sel");
+   
+    $(".after-action").empty();
+  }
 }
      
   var game = {
