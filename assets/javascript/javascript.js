@@ -2,6 +2,8 @@ $( document ).ready(function() {
 
 // create div's with images with for loop
 
+
+
 var characters = ["admiralAkbar", "bobbaFett", "chewbaca", "darthVader"];
 
 for (i=0;i<characters.length;i++) {
@@ -18,6 +20,11 @@ for (i=0;i<characters.length;i++) {
       charImg.attr("src", "assets/images/" + characters[i] + ".jpg");
     }
 }
+
+var admiralAkbar = document.getElementsByClassName("admiralAkbar");
+var bobbaFett = document.getElementsByClassName("bobbaFett");
+var chewbaca = document.getElementsByClassName("chewbaca");
+var darthVader = document.getElementsByClassName("darthVader");
 
 
 
@@ -75,7 +82,7 @@ for (i=0;i<characters.length;i++) {
 
   function compCharacter(){
     $(".character").on("click", function(){
-      if (game.step < 2){
+      if (game.step < 2 && ($(this).hasClass("not-selected"))) {
         game.compCharacter = this;
       $(this).addClass("comp-chara-sel");
       $(".comp-chara-sel").appendTo("#attack-target");
@@ -92,7 +99,7 @@ for (i=0;i<characters.length;i++) {
   function attackState(){
     $("#attack-button").on("click", function (){
       if (game.step < 3) {
-        $(".chara-sel").css("height", "50px");
+       ;
         game.step += 1;
       } else {
       console.log(game.userCharacter);
@@ -118,4 +125,3 @@ for (i=0;i<characters.length;i++) {
 
 
 
-assets/images/admiral_akbar.jpg
