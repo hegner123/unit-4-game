@@ -46,19 +46,27 @@ var characters = ["admiralAkbar", "bobbaFett", "chewbaca", "darthVader"];
 var characterObject = [admiralAkbar, bobbaFett, chewbaca, darthVader];
 
 // create div's with images with for loop
-for (i=0;i<characters.length;i++) {
+for (i=0; i<characters.length;i++) {
+  var name = characterObject[i].display;
   var characterbtn = $("<div>");
     characterbtn.addClass("chara-button character not-selected " + characters[i]);
     characterbtn.data("data", characters[i]);
     characterbtn.appendTo("#char-sel");
-    console.log(characterbtn.data());
     characterImage();
+    chacterText();
+    function chacterText() {
+      var charText = $("<p>");
+      charText.addClass("char-text");
+      charText.text(name)
+      charText.appendTo(characterbtn);
+    };
     function characterImage() {
       var charImg = $("<img>");
       charImg.addClass("imgClear character-image");
       charImg.appendTo(characterbtn);
       charImg.attr("src", "assets/images/" + characters[i] + ".jpg");
-    }
+    };
+    
 }
 
   function charaSel (){
