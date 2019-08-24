@@ -120,20 +120,13 @@ for (i=0;i<characters.length;i++) {
 
 function checkGameState () {
   if (userCharacter.hp < 0) {
-    game.step = 0;
-    userCharacter = "";
+    ;
+  } else if (computerCharacter.hp == 0) {
+    game.step = 1;
     computerCharacter = "" ;
-    $(".comp-chara-sel").empty();
-    $(".character").removeClass("user-chara-sel comp-chara-sel");
-   
-    $(".after-action").empty();  } else if (computerCharacter.hp == 0) {
-    game.step = 0;
-    userCharacter = "";
-    computerCharacter = "" ;
-    $(".comp-chara-sel").empty();
-    $(".character").removeClass("user-chara-sel comp-chara-sel");
-   
-    $(".after-action").empty();
+    
+    $(".character").removeClass("comp-chara-sel");
+    
   }
 }
      
