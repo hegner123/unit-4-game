@@ -114,8 +114,15 @@ for (i=0;i<characters.length;i++) {
     });}
     
   function fightAction () {
-  userCharacter.hp = userCharacter.hp - computerCharacter.counterAttack;
-  computerCharacter.hp = computerCharacter.hp - userCharacter.attack;
+    if (userCharacter.hp > 0) {
+      userCharacter.hp = userCharacter.hp - computerCharacter.counterAttack;
+      computerCharacter.hp = computerCharacter.hp - userCharacter.attack;
+    } else {
+    computerCharacter.hp = 0;
+
+    }
+  
+  
 }
 
 function checkGameState () {
