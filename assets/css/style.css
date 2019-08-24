@@ -4,6 +4,14 @@
   margin-left: 10px;
 }
 
+.character-image {
+  width: 100%;
+}
+
+.chara-button {
+  width:100px;
+}
+
 .attack-button {
   padding:15px;
   clear:both;
@@ -62,3 +70,11 @@
   overflow: auto;
 }
 
+.after-action {
+  font-size:3rem;
+  color: white;
+  padding: 1rem;
+  background:black;
+  float: left;
+  clear: both;
+}
