@@ -8,8 +8,8 @@ var computerCharacter = "";
 // character objects
   var admiralAkbar = {
     data:"admiralAkbar",
-    hp: 100,
-    attack: 20,
+    hp: 90,
+    attack: 2,
     counterAttack: 5,
     modifier: "",
     display: "Admiral Akbar",
@@ -17,16 +17,16 @@ var computerCharacter = "";
 
   var bobbaFett = {
     data:"bobbaFett",
-    hp: 100,
+    hp: 95,
     attack: 20,
-    counterAttack: 5,
+    counterAttack: 15,
     modifier: "",
     display: "Bobba Fett",
   }
 
   var chewbaca = {
     data:"chewbaca",
-    hp: 100,
+    hp: 120,
     attack: 20,
     counterAttack: 5,
     modifier: "",
@@ -35,9 +35,9 @@ var computerCharacter = "";
 
   var darthVader = {
     data:"darthVader",
-    hp: 100,
-    attack: 100,
-    counterAttack: 1000,
+    hp: 200,
+    attack: 10,
+    counterAttack: 22,
     modifier: "",
     display: "Darth Vader",
   }
@@ -116,7 +116,7 @@ for (i=0; i<characters.length;i++) {
       }
 
       fightAction();
-      $(".after-action").text(userCharacter.display + " :" + userCharacter.hp + "     " + computerCharacter.display + " :" + computerCharacter.hp);
+      
       checkGameState();
 
     });}
@@ -125,6 +125,8 @@ for (i=0; i<characters.length;i++) {
     if (userCharacter.hp > 0) {
       userCharacter.hp = userCharacter.hp - computerCharacter.counterAttack;
       computerCharacter.hp = computerCharacter.hp - userCharacter.attack;
+      userCharacter.attack = userCharacter.attack + computerCharacter.counterAttack
+      displayStuff();
     } else {
     computerCharacter.hp = 0;
 
@@ -145,6 +147,18 @@ function checkGameState () {
   }
 }
      
+  function displayStuff(){
+    $(".after-action").text(userCharacter.display + " :" + userCharacter.hp + "     " + computerCharacter.display + " :" + computerCharacter.hp);
+    var displayObj = $("<div>")
+    displayObj.addClass("after-action-two");
+    displayObj.appendTo($(".after-action"))
+    $(".after-action-two").text(userCharacter.display + " did " + userCharacter.attack + " damage");
+    var displayObj2 = $("<div>")
+    displayObj2.addClass("after-action-three");
+    displayObj2.appendTo($(".after-action-two"))
+    $(".after-action-three").text(computerCharacter.display + " did " + computerCharacter.counterAttack + " damage");
+  }
+
   var game = {
     state: charaSel(),
     userCharacter: "",
