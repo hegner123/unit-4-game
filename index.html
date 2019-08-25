@@ -13,25 +13,31 @@
 <body>
   <div class="battleground">
 
-<div id="char-sel">
+<div id="char-sel" class="select-box">
+  <div class="game-text" id="game-text-box">
+    <p>Select a character you want to play as. Then select a character to defeat. click attack to attack the enemy character with your character. Once the enemy character health is zero, choose the next character to defeat. You win when all characters have been defeated. If your character's hp drops to zero, you lose. Good Luck!</p
+      >
+  </div>
 </div> 
 
 
-<div id="enemy-select">
+<div id="enemy-select" class="select-box">
 </div>
 
 
-
-
-
-<div id="attack-target">
-</div>
-
-<div class="buttons">
+<div class="buttons select-box">
   <button id="attack-button" class="attack-button">Attack!</button>
+  <div class="after-action select-box"></div>
 </div>
 
-<div class="after-action"></div>
+
+<div id="attack-target" class="select-box">
+    
+</div>
+
+
+
+
 
 
 

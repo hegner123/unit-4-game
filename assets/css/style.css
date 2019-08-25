@@ -1,7 +1,26 @@
+* {
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  
+}
+
+
+.battleground {
+  overflow: auto;
+  margin: 1rem;
+}
+
 .character {
   float: left;
-  border: solid white 5px;
+  border: solid black 5px;
   margin-left: 10px;
+  width: 11rem !important;
+  
 }
 
 .character-image {
@@ -9,11 +28,14 @@
 }
 
 .chara-button {
-  width:100px;
+  width: 18%;
+  display: block;
+  clear: both;
 }
 
 .attack-button {
-  padding:15px;
+  margin-left: 10px;
+  width: 11rem !important;
   clear:both;
   overflow: auto;
 
@@ -36,14 +58,29 @@
   border-color:green;
 }
 
-#character-select {
+#char-sel {
   float: left;
   clear: both;
+  display: flex;
 }
 
 #enemy-select {
+  display: flex;
   float: left;
   clear: both;
+  padding:0.5rem 6rem;
+  min-height: 12rem;
+  background:grey;
+  width:100%;
+}
+
+.select-box{
+  display: flex;
+  float: left;
+  clear: both;
+  padding:0.5rem 6rem;
+  min-height: 12rem;
+  width:100%;
 }
 
 #attack-button {
@@ -52,17 +89,16 @@
   padding: 2rem;
   background: black;
   color: white;
+  font-size:2rem;
 }
 
 #attack-target {
-  float: left;
+  float: left !important;
   clear: both;
   margin-top:1rem;
+  
 }
 
-.battleground {
-  margin: 5rem;
-}
 
 .smaller {
   width:25%;
@@ -75,7 +111,7 @@
 }
 
 .after-action {
-  font-size:3rem;
+  font: size 1rem;
   color: white;
   padding: 1rem;
   background:black;
@@ -86,6 +122,16 @@
 .char-text {
   text-align: center;
   text-transform: uppercase;
-  
+  padding:1px;
+  background: white;
+}
 
+.game-text {
+  width: 50%;
+  position: absolute;
+  right: 0;
+  font-size: 2rem;
+  padding: 2%;
+  overflow: hidden;
+  z-index: 0 !important;
 }
