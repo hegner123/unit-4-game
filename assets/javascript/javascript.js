@@ -116,7 +116,8 @@ $(document).ready(function () {
           }
           }
             fightAction();
-            // checkGameState();
+            nextState();
+            checkStats();
             displayStuff();
           } ) ;
           }
@@ -128,36 +129,29 @@ $(document).ready(function () {
       computerCharacter.hp = computerCharacter.hp - userCharacter.attack;
       userCharacter.attack = userCharacter.attack + computerCharacter.counterAttack
     } else if (userCharacter.hp < 0) {
-      userCharacter.hp = 0
-    } else if (computerCharacter.hp < 0) {
-      computerCharacter.hp = 0;
+      game.state = loseState();
     } else {;}
-    for (l=0;l<characterObject.length;l++) {
-      // look at the results of math, determine 
-    }
+    
     }
 // ---------------------------------------------------------------------------------------------------------------------------------------------
 
-// THIS SECTION NEEDS WORK: CHECK THE GAME STATE AND DISPLAY WIN/LOSE/PICK NEW CHARACTER/DELETE DEFEATED CHARACTER
-  // function checkGameState() {
-  //   if (userCharacter.hp == 0) {
-  //     $(".after-action").text("YOU LOSE");
-  //   } else if (computerCharacter.hp == 0) {
-  //     game.step = 1;
-  //     computerCharacter = "";
-
-  //     $(".character").removeClass("comp-chara-sel");
-
-  //   }
-  // }
 
 
   // display the results of the attack state ------------------------------------------------------------------------------------------------------------------------
   function displayStuff() {
-    $("div.user-chara-sel > p").text(userCharacter.hp);
-    $("div.comp-chara-sel > p").text(computerCharacter.hp);
-    $(".box-three").text(userCharacter.display + " did " + userCharacter.attack + " damage");
-    $(".box-four").text(computerCharacter.display + " did " + computerCharacter.counterAttack + " damage");
+    if ((!userCharacter == false ) && (!computerCharacter == false)) {
+      $("div.user-chara-sel > p").text(userCharacter.hp);
+      $("div.comp-chara-sel > p").text(computerCharacter.hp);
+      $(".box-three").text(userCharacter.display + " did " + userCharacter.attack + " damage");
+      $(".box-four").text(computerCharacter.display + " did " + computerCharacter.counterAttack + " damage");
+    } else if (!computerCharacter) {
+      
+      $("div.user-chara-sel > p").text(userCharacter.hp);
+      
+      $(".box-three").text(userCharacter.display + " did " + userCharacter.attack + " damage");
+      $(".box-four").text("");
+    }
+    
   }
 
 
@@ -165,10 +159,32 @@ $(document).ready(function () {
   var game = {
     state: charaSel(),
     step: 0,
+    opponents: 3,
   }
 
+    function nextState () {
+      if (computerCharacter.hp <= 0){
+        $("div.attack-target > div").removeClass("comp-chara-sel");
+      $("div.attack-target > div").addClass("defeated");
+      computerCharacter = "";
+      console.log(computerCharacter);
+      $(".defeated").hide();
+      game.opponents-- ;
+      game.step = 1;
+      console.log(game);
+      } else {;}
+      }
 
 
+    function checkStats () {
+      if (game.opponents === 0) {
+        game.state = win();
+        $(".box-three").text("You Win");
+      }
+    }
 
+    function win () {
+      
+    }
 
-})
+  })

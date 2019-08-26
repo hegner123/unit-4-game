@@ -97,3 +97,11 @@ body {
     font-size: 1.19rem;
     list-style: none;
 }
+
+.off-screen {
+  padding: 100px;
+  background: black;
+  width: 100px;
+  position: absolute;
+  left: -200px;
+}
