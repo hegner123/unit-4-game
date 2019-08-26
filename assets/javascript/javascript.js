@@ -48,6 +48,7 @@ $(document).ready(function () {
   // create div's with images with for loop------------------------------------------------------------------------------------------------
   for (i = 0; i < characters.length; i++) {
     var name = characterObject[i].display;
+    var hitpoints = characterObject[i].hp;
     var characterbtn = $("<div>");
     characterbtn.addClass("float-left chara-button not-selected col col-1 " + characters[i]);
     characterbtn.data("data", characters[i]);
@@ -58,7 +59,7 @@ $(document).ready(function () {
     function chacterText() {
       var charText = $("<p>");
       charText.addClass("char-text");
-      charText.text(name)
+      charText.text(hitpoints)
       charText.appendTo(characterbtn);
       };
 
@@ -131,6 +132,9 @@ $(document).ready(function () {
     } else if (computerCharacter.hp < 0) {
       computerCharacter.hp = 0;
     } else {;}
+    for (l=0;l<characterObject.length;l++) {
+      // look at the results of math, determine 
+    }
     }
 // ---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -150,8 +154,8 @@ $(document).ready(function () {
 
   // display the results of the attack state ------------------------------------------------------------------------------------------------------------------------
   function displayStuff() {
-    $(".box-one").text(userCharacter.display + " HP:" + userCharacter.hp);
-    $(".box-two").text(computerCharacter.display + " HP:" + computerCharacter.hp);
+    $("div.user-chara-sel > p").text(userCharacter.hp);
+    $("div.comp-chara-sel > p").text(computerCharacter.hp);
     $(".box-three").text(userCharacter.display + " did " + userCharacter.attack + " damage");
     $(".box-four").text(computerCharacter.display + " did " + computerCharacter.counterAttack + " damage");
   }
