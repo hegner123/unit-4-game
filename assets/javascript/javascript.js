@@ -117,8 +117,8 @@ $(document).ready(function () {
           }
             fightAction();
             nextState();
-            checkStats();
             displayStuff();
+            checkStats();
           } ) ;
           }
 
@@ -128,31 +128,53 @@ $(document).ready(function () {
       userCharacter.hp = userCharacter.hp - computerCharacter.counterAttack;
       computerCharacter.hp = computerCharacter.hp - userCharacter.attack;
       userCharacter.attack = userCharacter.attack + computerCharacter.counterAttack
-    } else if (userCharacter.hp < 0) {
-      game.state = loseState();
-    } else {;}
-    
-    }
+      } else {;}
+      }
 // ---------------------------------------------------------------------------------------------------------------------------------------------
 
 
+  
 
-  // display the results of the attack state ------------------------------------------------------------------------------------------------------------------------
+    function nextState () {
+      if (computerCharacter.hp <= 0){
+      $("div.attack-target > div").removeClass("comp-chara-sel");
+      $("div.attack-target > div").addClass("defeated");
+      computerCharacter = "";
+      $(".defeated").hide();
+      game.opponents-- ;
+      game.step = 1;
+      } else {;}
+      }
+
+
+    function checkStats () {
+      if (game.opponents == 0) {
+        $(".box-three").text("You Win");
+        game.wins++;
+      } else if (userCharacter.hp < 0){
+        $(".box-three").text("You lose");
+        game.losses++;
+      } else {;}
+      }
+
+    function win () {
+      
+    }
+
+
+     // display the results of the attack state ------------------------------------------------------------------------------------------------------------------------
   function displayStuff() {
-    if ((!userCharacter == false ) && (!computerCharacter == false)) {
+    if (!computerCharacter == false){
       $("div.user-chara-sel > p").text(userCharacter.hp);
       $("div.comp-chara-sel > p").text(computerCharacter.hp);
       $(".box-three").text(userCharacter.display + " did " + userCharacter.attack + " damage");
       $(".box-four").text(computerCharacter.display + " did " + computerCharacter.counterAttack + " damage");
     } else if (!computerCharacter) {
-      
       $("div.user-chara-sel > p").text(userCharacter.hp);
-      
       $(".box-three").text(userCharacter.display + " did " + userCharacter.attack + " damage");
       $(".box-four").text("");
+    } else {;}
     }
-    
-  }
 
 
   // primary game object.
@@ -160,31 +182,8 @@ $(document).ready(function () {
     state: charaSel(),
     step: 0,
     opponents: 3,
+    wins:0,
+    losses:0,
   }
-
-    function nextState () {
-      if (computerCharacter.hp <= 0){
-        $("div.attack-target > div").removeClass("comp-chara-sel");
-      $("div.attack-target > div").addClass("defeated");
-      computerCharacter = "";
-      console.log(computerCharacter);
-      $(".defeated").hide();
-      game.opponents-- ;
-      game.step = 1;
-      console.log(game);
-      } else {;}
-      }
-
-
-    function checkStats () {
-      if (game.opponents === 0) {
-        game.state = win();
-        $(".box-three").text("You Win");
-      }
-    }
-
-    function win () {
-      
-    }
 
   })
