@@ -72,7 +72,7 @@ $(document).ready(function () {
 
 // chose a character----------------------------------------------------------------------------------------------------------------
   function charaSel() {
-    $(".character").on("click", function () {
+    $(".chara-button").on("click", function () {
       if (game.step < 1) {
         userCharacter = $(this).data();
         $(this).addClass("user-chara-sel");
