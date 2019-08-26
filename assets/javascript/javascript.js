@@ -157,15 +157,10 @@ $(document).ready(function () {
   // }
 
   function displayStuff() {
-    $(".after-action").text(userCharacter.display + " :" + userCharacter.hp + "     " + computerCharacter.display + " :" + computerCharacter.hp);
-    var displayObj = $("<div>")
-    displayObj.addClass("after-action-two");
-    displayObj.appendTo($(".after-action"))
-    $(".after-action-two").text(userCharacter.display + " did " + userCharacter.attack + " damage");
-    var displayObj2 = $("<div>")
-    displayObj2.addClass("after-action-three");
-    displayObj2.appendTo($(".after-action-two"))
-    $(".after-action-three").text(computerCharacter.display + " did " + computerCharacter.counterAttack + " damage");
+    $(".box-one").text(userCharacter.display + " HP:" + userCharacter.hp);
+    $(".box-two").text(computerCharacter.display + " HP:" + computerCharacter.hp);
+    $(".box-three").text(userCharacter.display + " did " + userCharacter.attack + " damage");
+    $(".box-four").text(computerCharacter.display + " did " + computerCharacter.counterAttack + " damage");
   }
 
   var game = {

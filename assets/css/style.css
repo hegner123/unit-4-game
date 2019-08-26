@@ -33,13 +33,7 @@ body {
   clear: both;
 }
 
-.attack-button {
-  margin-left: 10px;
-  width: 11rem !important;
-  clear:both;
-  overflow: auto;
 
-}
 
 .buttons {
   display:block;
@@ -83,14 +77,6 @@ body {
   width:100%;
 }
 
-#attack-button {
-  float: left;
-  clear: both;
-  padding: 2rem;
-  background: black;
-  color: white;
-  font-size:2rem;
-}
 
 #attack-target {
   float: left !important;
@@ -111,7 +97,16 @@ body {
 }
 
 .after-action {
-  font: size 1rem;
+  font-size: 1rem;
+  color: white;
+  padding: 1rem;
+  background:black;
+  float: left;
+  clear: both;
+}
+
+.after-action-box {
+  font-size: 1rem;
   color: white;
   padding: 1rem;
   background:black;
@@ -134,4 +129,14 @@ body {
   padding: 2%;
   overflow: hidden;
   z-index: 0 !important;
+}
+
+.after-action-list {
+  display: flex;
+    align-self: center;
+    justify-self: center;
+    background: darkgrey;
+    margin: 10px;
+    width: 100%;
+    font-size: 1.19rem;
 }
