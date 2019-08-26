@@ -1,77 +1,41 @@
-* {
-  box-sizing: border-box;
-  z-index: 1;
-}
+
+
+
+
 
 body {
-  padding: 0;
-  margin: 0;
-  
-}
-
-
-.battleground {
-  overflow: auto;
-  margin: 1rem;
+  background:#777
 }
 
 .character {
-  float: left;
   border: solid black 5px;
-  margin-left: 10px;
-  width: 11rem !important;
-  
-}
-
-.character-image {
-  width: 100%;
 }
 
 .chara-button {
-  width: 18%;
   display: block;
-  clear: both;
-}
-
-
-
-.buttons {
-  display:block;
-  float: left;
-  clear: both;
-  overflow: auto;
-  margin-top:20px;
-  width:100%;
 }
 
 .user-chara-sel {
-  border-color:red;
-}
-
-.comp-chara-sel {
   border-color:green;
 }
 
-#char-sel {
-  float: left;
+.comp-chara-sel {
+  border-color:red;
+}
+
+.character-select {
   clear: both;
-  display: flex;
 }
 
 #enemy-select {
-  display: flex;
-  float: left;
-  clear: both;
+ 
   padding:0.5rem 6rem;
   min-height: 12rem;
-  background:grey;
   width:100%;
 }
 
 .select-box{
-  display: flex;
-  float: left;
-  clear: both;
+ 
   padding:0.5rem 6rem;
   min-height: 12rem;
   width:100%;
@@ -82,18 +46,10 @@ body {
   float: left !important;
   clear: both;
   margin-top:1rem;
-  
-}
-
-
-.smaller {
-  width:25%;
 }
 
 .imgClear {
-  float: left;
   clear: both;
-  overflow: auto;
 }
 
 .after-action {
@@ -101,7 +57,7 @@ body {
   color: white;
   padding: 1rem;
   background:black;
-  float: left;
+  
   clear: both;
 }
 
@@ -110,33 +66,34 @@ body {
   color: white;
   padding: 1rem;
   background:black;
-  float: left;
+  
   clear: both;
 }
 
 .char-text {
+  display: block;
   text-align: center;
   text-transform: uppercase;
-  padding:1px;
+  font-size: 12px;
   background: white;
+  color:black;
 }
 
 .game-text {
-  width: 50%;
+  width: 25%;
   position: absolute;
   right: 0;
-  font-size: 2rem;
   padding: 2%;
   overflow: hidden;
   z-index: 0 !important;
 }
 
 .after-action-list {
-  display: flex;
     align-self: center;
     justify-self: center;
-    background: darkgrey;
+    
     margin: 10px;
-    width: 100%;
+    
     font-size: 1.19rem;
+    list-style: none;
 }

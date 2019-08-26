@@ -5,7 +5,7 @@ $(document).ready(function () {
 
   var computerCharacter = "";
 
-  // character objects
+  // character values ------------------------------------------------------------------------------------------------------------------------
   var admiralAkbar = {
     data: "admiralAkbar",
     hp: 90,
@@ -41,15 +41,15 @@ $(document).ready(function () {
     modifier: "",
     display: "Darth Vader",
   }
-
+// character arrays ----------------------------------------------------------------------------------------------------------------------------------------------------------------
   var characters = ["admiralAkbar", "bobbaFett", "chewbaca", "darthVader"];
   var characterObject = [admiralAkbar, bobbaFett, chewbaca, darthVader];
 
-  // create div's with images with for loop
+  // create div's with images with for loop------------------------------------------------------------------------------------------------
   for (i = 0; i < characters.length; i++) {
     var name = characterObject[i].display;
     var characterbtn = $("<div>");
-    characterbtn.addClass("chara-button character not-selected " + characters[i]);
+    characterbtn.addClass("float-left chara-button not-selected col col-1 " + characters[i]);
     characterbtn.data("data", characters[i]);
     characterbtn.prependTo("#char-sel");
     characterImage();
@@ -60,17 +60,17 @@ $(document).ready(function () {
       charText.addClass("char-text");
       charText.text(name)
       charText.appendTo(characterbtn);
-    };
+      };
 
     function characterImage() {
       var charImg = $("<img>");
-      charImg.addClass("imgClear character-image");
+      charImg.addClass("imgClear character-image img-fluid");
       charImg.appendTo(characterbtn);
       charImg.attr("src", "assets/images/" + characters[i] + ".jpg");
-    };
+      };
+      }
 
-  }
-
+// chose a character----------------------------------------------------------------------------------------------------------------
   function charaSel() {
     $(".character").on("click", function () {
       if (game.step < 1) {
@@ -78,72 +78,63 @@ $(document).ready(function () {
         $(this).addClass("user-chara-sel");
         $(this).removeClass("not-selected");
         $(".not-selected").appendTo("#enemy-select");
-        game.state = compCharacter();
+        game.state = compCharacterSel();
         console.log(userCharacter);
         game.step += 1;
-      } else {
-        ;
+      } else {;}
+      } )
       }
 
-    })
-  }
+// chose a character for the computer------------------------------------------------------------------------------------------------------------------------- 
 
-  function compCharacter() {
-    $(".character").on("click", function () {
+  function compCharacterSel() {
+    $(".chara-button").on("click", function () {
       if (game.step < 2 && ($(this).hasClass("not-selected"))) {
         computerCharacter = $(this).data();
         $(this).addClass("comp-chara-sel");
-        $(".comp-chara-sel").prependTo("#attack-target");
+        $(".comp-chara-sel").appendTo("#attack-target");
         game.state = attackState();
-        console.log(computerCharacter);
         game.step += 1;
-      } else {
-        ;
+      } else {;}
+      } )
       }
-    })
-  }
 
+
+// function to be run when player has chosen a character and chosen a character for computer player------------------------------------------
   function attackState() {
     $("#attack-button").on("click", function () {
       if (!computerCharacter) {
         ;
       } else {
         for (j = 0; j < characterObject.length; j++) {
-
           if (userCharacter.data == characterObject[j].data) {
             userCharacter = characterObject[j];
           } else if (computerCharacter.data == characterObject[j].data) {
             computerCharacter = characterObject[j];
-          } else {
-            ;
+          } else {;}
           }
-        }
-      }
+          }
+            fightAction();
+            // checkGameState();
+            displayStuff();
+          } ) ;
+          }
 
-      fightAction();
-      // checkGameState();
-      displayStuff();
-    });
-  }
-
+// calculate new character stats THIS SECTION NEEDS WORK-----------------------------------------------------------------------------------------
   function fightAction() {
     if ((userCharacter.hp > 0) && (computerCharacter.hp > 0)) {
       userCharacter.hp = userCharacter.hp - computerCharacter.counterAttack;
       computerCharacter.hp = computerCharacter.hp - userCharacter.attack;
       userCharacter.attack = userCharacter.attack + computerCharacter.counterAttack
-
     } else if (userCharacter.hp < 0) {
       userCharacter.hp = 0
     } else if (computerCharacter.hp < 0) {
       computerCharacter.hp = 0;
-    } else {
-      ;
+    } else {;}
     }
+// ---------------------------------------------------------------------------------------------------------------------------------------------
 
-  }
-
-
-
+// THIS SECTION NEEDS WORK: CHECK THE GAME STATE AND DISPLAY WIN/LOSE/PICK NEW CHARACTER/DELETE DEFEATED CHARACTER
   // function checkGameState() {
   //   if (userCharacter.hp == 0) {
   //     $(".after-action").text("YOU LOSE");
@@ -156,6 +147,8 @@ $(document).ready(function () {
   //   }
   // }
 
+
+  // display the results of the attack state ------------------------------------------------------------------------------------------------------------------------
   function displayStuff() {
     $(".box-one").text(userCharacter.display + " HP:" + userCharacter.hp);
     $(".box-two").text(computerCharacter.display + " HP:" + computerCharacter.hp);
@@ -163,11 +156,11 @@ $(document).ready(function () {
     $(".box-four").text(computerCharacter.display + " did " + computerCharacter.counterAttack + " damage");
   }
 
+
+  // primary game object.
   var game = {
     state: charaSel(),
-    userCharacter: "",
     step: 0,
-    compCharacter: "",
   }
 
 

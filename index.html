@@ -4,41 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="assets/javascript/javascript.js"></script>
   <title>Star Wars Battle</title>
 </head>
 <body>
-  <div class="battleground">
+  <div class="container-fluid battleground">
+    <div class="row">
 
-<div id="char-sel" class="select-box">
-  <div class="game-text" id="game-text-box">
-    <p>Select a character you want to play as. Then select a character to defeat. click attack to attack the enemy character with your character. Once the enemy character health is zero, choose the next character to defeat. You win when all characters have been defeated. If your character's hp drops to zero, you lose. Good Luck!</p
-      >
+  <div id="char-sel" class="select-box character-select col col-12">
+    <div class="game-text" id="game-text-box">
+      <p>Select a character you want to play as. Then select a character to defeat. click attack to attack the enemy character with your character. Once the enemy character health is zero, choose the next character to defeat. You win when all characters have been defeated. If your character's hp drops to zero, you lose. Good Luck!</p>
+    </div>
+  </div> 
+</div>
+
+<div class="row">
+<div id="enemy-select" class="select-box col col-12">
+</div>
+</div>
+
+<div class="row">
+
+<div id="attack-target" class="after-action-box col col-12">
+  <button id="attack-button" class="attack-button">ATTACK</button>
+  <ul class="">
+    <li class="float-right after-action-list box-one"></li>
+    <li class="float-right after-action-list box-two"></li>
+    <li class="float-right after-action-list box-three"></li>
+    <li class="float-right after-action-list box-four"></li>
+  </ul>
   </div>
-</div> 
-
-
-<div id="enemy-select" class="select-box">
 </div>
 
 
 
-<div class="select-box after-action-box">
-  <button id="attack-button" class="attack-button">ATTACK</button>
-  <ul class="select-box">
-    <!-- <li class="after-action-list box-one"></li> -->
-    <!-- <li class="after-action-list box-two"></li> -->
-    <!-- <li class="after-action-list box-three"></li> -->
-    <!-- <li class="after-action-list box-four"></li> -->
-  </ul>
-  </div>
 
-
-
-<div id="attack-target" class="select-box">
     
 </div>
 
