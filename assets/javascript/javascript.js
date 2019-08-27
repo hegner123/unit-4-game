@@ -10,35 +10,31 @@ $(document).ready(function () {
     data: "admiralAkbar",
     hp: 90,
     attack: 2,
-    counterAttack: 5,
-    modifier: "",
+    counterAttack: 2,
     display: "Admiral Akbar",
   }
 
   var bobbaFett = {
     data: "bobbaFett",
     hp: 95,
-    attack: 20,
-    counterAttack: 15,
-    modifier: "",
+    attack: 2,
+    counterAttack: 2,
     display: "Bobba Fett",
   }
 
   var chewbaca = {
     data: "chewbaca",
     hp: 120,
-    attack: 20,
-    counterAttack: 5,
-    modifier: "",
+    attack: 2,
+    counterAttack: 2,
     display: "Chewbaca"
   }
 
   var darthVader = {
     data: "darthVader",
     hp: 200,
-    attack: 10,
-    counterAttack: 22,
-    modifier: "",
+    attack: 35,
+    counterAttack: 35,
     display: "Darth Vader",
   }
 // character arrays ----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -125,16 +121,16 @@ createCharacterDiv();
             fightAction();
             nextState();
             displayStuff();
-            checkStats();
+            
           } ) ;
           }
 
 // calculate new character stats THIS SECTION NEEDS WORK-----------------------------------------------------------------------------------------
   function fightAction() {
     if ((userCharacter.hp > 0) && (computerCharacter.hp > 0)) {
+      userCharacter.attack = userCharacter.attack + userCharacter.display.length;
       userCharacter.hp = userCharacter.hp - computerCharacter.counterAttack;
       computerCharacter.hp = computerCharacter.hp - userCharacter.attack;
-      userCharacter.attack = userCharacter.attack + computerCharacter.counterAttack
       } else {;}
       }
 // ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -156,10 +152,10 @@ createCharacterDiv();
 
     function checkStats () {
       if (game.opponents == 0) {
-        $(".box-three").text("You Win");
+        $(".box-one").text("You Win");
         game.wins++;
-      } else if (userCharacter.hp < 0){
-        $(".box-three").text("You lose");
+      } else if (userCharacter.hp <= 0){
+        $(".box-one").text("You lose");
         game.losses++;
       } else {;}
       }
@@ -172,12 +168,18 @@ createCharacterDiv();
     if (!computerCharacter == false){
       $("div.user-chara-sel > p").text(userCharacter.hp);
       $("div.comp-chara-sel > p").text(computerCharacter.hp);
-      $(".box-three").text(userCharacter.display + " did " + userCharacter.attack + " damage");
-      $(".box-four").text(computerCharacter.display + " did " + computerCharacter.counterAttack + " damage");
+      $(".box-four").text(userCharacter.display + " did " + userCharacter.attack + " damage");
+      $(".box-three").text(computerCharacter.display + " did " + computerCharacter.counterAttack + " damage");
+      $(".box-two").text("Wins: " + game.wins + "|| " + "Loses: " + game.losses);
+      $(".box-one").text("  ");
+      checkStats();
     } else if (!computerCharacter) {
       $("div.user-chara-sel > p").text(userCharacter.hp);
-      $(".box-three").text(userCharacter.display + " did " + userCharacter.attack + " damage");
-      $(".box-four").text("");
+      $(".box-four").text(userCharacter.display + " did " + userCharacter.attack + " damage");
+      $(".box-three").text("");
+      $(".box-two").text("Wins: " + game.wins + "|| " + "Loses: " + game.losses);
+      $(".box-one").text("  ");
+      checkStats();
     } else {;}
     }
 
@@ -207,6 +209,10 @@ $(".reset").on("click", function () {
       darthVader.attack = 10;
       createCharacterDiv();
       charaSel();
+      $(".box-one").text("");
+      
+      $(".box-three").text(""); 
+      $(".box-four").text("");
     }
 
   // primary game object.

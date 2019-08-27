@@ -46,6 +46,7 @@ body {
   float: left !important;
   clear: both;
   margin-top:1rem;
+  min-height:13rem;
 }
 
 .imgClear {
