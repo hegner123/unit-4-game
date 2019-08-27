@@ -57,7 +57,7 @@ body {
   font-size: 1rem;
   color: white;
   padding: 1rem;
-  background:black;
+  ;
   
   clear: both;
 }
@@ -65,9 +65,7 @@ body {
 .after-action-box {
   font-size: 1rem;
   color: white;
-  padding: 1rem;
-  background:black;
-  
+  padding: 1rem;  
   clear: both;
 }
 

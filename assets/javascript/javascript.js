@@ -40,11 +40,9 @@ $(document).ready(function () {
 // character arrays ----------------------------------------------------------------------------------------------------------------------------------------------------------------
   var characters = ["admiralAkbar", "bobbaFett", "chewbaca", "darthVader"];
   var characterObject = [admiralAkbar, bobbaFett, chewbaca, darthVader];
+
 // run createcharacterdiv
 createCharacterDiv();
-
-  // button script
-  
 
   // create div's with images with for loop------------------------------------------------------------------------------------------------
   function createCharacterDiv () {
@@ -109,7 +107,8 @@ createCharacterDiv();
     $("#attack-button").on("click", function () {
       if (!computerCharacter) {
         ;
-      } else {
+      } else if (!computerCharacter == false){
+
         for (j = 0; j < characterObject.length; j++) {
           if (userCharacter.data == characterObject[j].data) {
             userCharacter = characterObject[j];
@@ -117,10 +116,11 @@ createCharacterDiv();
             computerCharacter = characterObject[j];
           } else {;}
           }
-          }
-            fightAction();
-            nextState();
-            displayStuff();
+          fightAction();
+          nextState();
+          displayStuff();
+          } else if (userCharacter.hp <=0) {;};
+          displayStuff();
             
           } ) ;
           }
@@ -136,12 +136,15 @@ createCharacterDiv();
 // ---------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  
+  var defeatedName ="";
 
     function nextState () {
       if (computerCharacter.hp <= 0){
       $("div.attack-target > div").removeClass("comp-chara-sel");
       $("div.attack-target > div").addClass("defeated");
+      defeatedName = computerCharacter.display;
+      console.log(defeatedName);
+      console.log(computerCharacter.display);
       computerCharacter = "";
       $(".defeated").hide();
       game.opponents-- ;
@@ -150,15 +153,6 @@ createCharacterDiv();
       }
 
 
-    function checkStats () {
-      if (game.opponents == 0) {
-        $(".box-one").text("You Win");
-        game.wins++;
-      } else if (userCharacter.hp <= 0){
-        $(".box-one").text("You lose");
-        game.losses++;
-      } else {;}
-      }
 
     
 
@@ -176,44 +170,50 @@ createCharacterDiv();
     } else if (!computerCharacter) {
       $("div.user-chara-sel > p").text(userCharacter.hp);
       $(".box-four").text(userCharacter.display + " did " + userCharacter.attack + " damage");
-      $(".box-three").text("");
+      $(".box-three").text(defeatedName + " was defeated! Please select the next enemy to defeat!");
       $(".box-two").text("Wins: " + game.wins + "|| " + "Loses: " + game.losses);
       $(".box-one").text("  ");
       checkStats();
     } else {;}
     }
 
-    
+  // runs at the end of display stuff, final action of attack chain of functions.
+    function checkStats () {
+      if (game.opponents == 0) {
+        $(".box-one").text("You Win");
+        game.wins++;
+      } else if (userCharacter.hp <= 0){
+        $(".box-one").text("You lose");
+        game.losses++;
+      } else {;}
+      }
 
-$(".reset").on("click", function () {
-  reset();
-});
+      $(".reset").on("click", function () {
+        reset();
+      });
 
-    function reset(){
-      $(".chara-button").remove();
-      console.log(game);
-      game.state = charaSel();
-      userCharacter = "";
-      computerCharacter = "";
-      game.step = 0;
-      game.opponents = 3;
-      $(".wins-text").text(game.wins);
-      $(".lose-text").text(game.losses);
-      admiralAkbar.hp = 90;
-      admiralAkbar.attack = 2;
-      chewbaca.hp = 120;
-      chewbaca.attack = 20;
-      bobbaFett.hp = 95;
-      bobbaFett.attack = 20 
-      darthVader.hp = 200;
-      darthVader.attack = 10;
-      createCharacterDiv();
-      charaSel();
-      $(".box-one").text("");
-      
-      $(".box-three").text(""); 
-      $(".box-four").text("");
-    }
+      function reset(){
+        $(".chara-button").remove();
+        console.log(game);
+        userCharacter = "";
+        computerCharacter = "";
+        game.step = 0;
+        game.opponents = 3;
+        admiralAkbar.hp = 90;
+        admiralAkbar.attack = 2;
+        chewbaca.hp = 120;
+        chewbaca.attack = 20;
+        bobbaFett.hp = 95;
+        bobbaFett.attack = 20 
+        darthVader.hp = 200;
+        darthVader.attack = 10;
+        createCharacterDiv();
+        charaSel();
+        $(".box-one").text("");
+        $(".box-three").text(""); 
+        $(".box-four").text("");
+        game.state = charaSel();
+        }
 
   // primary game object.
   var game = {
