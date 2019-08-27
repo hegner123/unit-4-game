@@ -97,48 +97,61 @@ createCharacterDiv();
         $(".comp-chara-sel").appendTo("#attack-target");
         game.state = attackState();
         game.step += 1;
+        assignCharacterData();
       } else {;}
       } )
       }
 
 
-// function to be run when player has chosen a character and chosen a character for computer player------------------------------------------
-  function attackState() {
-    $("#attack-button").on("click", function () {
+
+      function assignCharacterData () {
+        // if computer character has not been chosen, do nothing
       if (!computerCharacter) {
         ;
+        // if computer character has been choosen, run the following loop to assign character data to the div.
       } else if (!computerCharacter == false){
-
+        // for however many items in the characater object array
         for (j = 0; j < characterObject.length; j++) {
+          // if user character data matches the data of the current index of character object assign that data to user characater
           if (userCharacter.data == characterObject[j].data) {
             userCharacter = characterObject[j];
+            // if computer character data matches the data of the current index of character object assign that data to computercharacater
           } else if (computerCharacter.data == characterObject[j].data) {
             computerCharacter = characterObject[j];
           } else {;}
           }
-          fightAction();
-          nextState();
-          displayStuff();
-          } else if (userCharacter.hp <=0) {;};
-          displayStuff();
-            
-          } ) ;
-          }
+          } 
+      }
+
+// function to be run when player has chosen a character and chosen a character for computer player------------------------------------------
+  function attackState() {
+    $("#attack-button").on("click", function () {
+      if ((game.state == winState) || (game.state == loseState)) {
+        ;
+      } else if ((userCharacter.hp > 0) && (computerCharacter.hp > 0)) {
+        fightAction();
+        defeatedCharacter();
+        displayStuff();
+      } else if ((userCharacter.hp <= 0) || (computerCharacter.hp <= 0)) {
+        defeatedCharacter();
+        displayStuff();
+        
+      } else {;}
+      } );
+      }
 
 // calculate new character stats THIS SECTION NEEDS WORK-----------------------------------------------------------------------------------------
   function fightAction() {
-    if ((userCharacter.hp > 0) && (computerCharacter.hp > 0)) {
       userCharacter.attack = userCharacter.attack + userCharacter.display.length;
       userCharacter.hp = userCharacter.hp - computerCharacter.counterAttack;
       computerCharacter.hp = computerCharacter.hp - userCharacter.attack;
-      } else {;}
-      }
+      } 
 // ---------------------------------------------------------------------------------------------------------------------------------------------
 
 
   var defeatedName ="";
 
-    function nextState () {
+    function defeatedCharacter () {
       if (computerCharacter.hp <= 0){
       $("div.attack-target > div").removeClass("comp-chara-sel");
       $("div.attack-target > div").addClass("defeated");
@@ -151,11 +164,6 @@ createCharacterDiv();
       game.step = 1;
       } else {;}
       }
-
-
-
-    
-
 
      // display the results of the attack state ------------------------------------------------------------------------------------------------------------------------
   function displayStuff() {
@@ -180,11 +188,10 @@ createCharacterDiv();
   // runs at the end of display stuff, final action of attack chain of functions.
     function checkStats () {
       if (game.opponents == 0) {
-        $(".box-one").text("You Win");
-        game.wins++;
-      } else if (userCharacter.hp <= 0){
-        $(".box-one").text("You lose");
-        game.losses++;
+        game.state = winState();
+      } else if ((userCharacter.hp <= 0) && (!userCharacter == false)) {
+        userCharacter = "";
+        game.state = loseState();
       } else {;}
       }
 
@@ -214,6 +221,23 @@ createCharacterDiv();
         $(".box-four").text("");
         game.state = charaSel();
         }
+
+  function winState () {
+    console.log("win")
+    game.wins++
+    $(".box-two").text("Wins: " + game.wins + "|| " + "Loses: " + game.losses);
+    $(".box-four").text("You Win")
+    $(".box-three").text("");
+  }
+
+  function loseState () {
+    console.log("lose")
+    game.losses++
+    $(".box-two").text("Wins: " + game.wins + "|| " + "Loses: " + game.losses);
+    $(".box-four").text("You Lose")
+    $(".box-three").text("");
+
+  }
 
   // primary game object.
   var game = {
