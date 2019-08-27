@@ -129,9 +129,14 @@ createCharacterDiv();
       if ((game.state == winState) || (game.state == loseState)) {
         ;
       } else if ((userCharacter.hp > 0) && (computerCharacter.hp > 0)) {
-        fightAction();
-        defeatedCharacter();
-        displayStuff();
+        userfightAction();
+          if (computerCharacter.hp < 0) {
+            displayStuff()
+          } else {
+            computerfightAction();
+            defeatedCharacter();
+            displayStuff();
+          };
       } else if ((userCharacter.hp <= 0) || (computerCharacter.hp <= 0)) {
         defeatedCharacter();
         displayStuff();
@@ -141,11 +146,14 @@ createCharacterDiv();
       }
 
 // calculate new character stats THIS SECTION NEEDS WORK-----------------------------------------------------------------------------------------
-  function fightAction() {
-      userCharacter.attack = userCharacter.attack + userCharacter.display.length;
+  function computerfightAction() {
       userCharacter.hp = userCharacter.hp - computerCharacter.counterAttack;
-      computerCharacter.hp = computerCharacter.hp - userCharacter.attack;
       } 
+
+      function userfightAction() {
+        userCharacter.attack = userCharacter.attack + userCharacter.display.length;
+        computerCharacter.hp = computerCharacter.hp - userCharacter.attack;
+        } 
 // ---------------------------------------------------------------------------------------------------------------------------------------------
 
 
