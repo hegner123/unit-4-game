@@ -44,19 +44,24 @@ $(document).ready(function () {
 // character arrays ----------------------------------------------------------------------------------------------------------------------------------------------------------------
   var characters = ["admiralAkbar", "bobbaFett", "chewbaca", "darthVader"];
   var characterObject = [admiralAkbar, bobbaFett, chewbaca, darthVader];
+// run createcharacterdiv
+createCharacterDiv();
+
+  // button script
+  
 
   // create div's with images with for loop------------------------------------------------------------------------------------------------
+  function createCharacterDiv () {
   for (i = 0; i < characters.length; i++) {
-    var name = characterObject[i].display;
     var hitpoints = characterObject[i].hp;
     var characterbtn = $("<div>");
     characterbtn.addClass("float-left chara-button not-selected col col-1 " + characters[i]);
     characterbtn.data("data", characters[i]);
     characterbtn.prependTo("#char-sel");
     characterImage();
-    chacterText();
+    characterText();
 
-    function chacterText() {
+    function characterText() {
       var charText = $("<p>");
       charText.addClass("char-text");
       charText.text(hitpoints)
@@ -70,6 +75,7 @@ $(document).ready(function () {
       charImg.attr("src", "assets/images/" + characters[i] + ".jpg");
       };
       }
+      }
 
 // chose a character----------------------------------------------------------------------------------------------------------------
   function charaSel() {
@@ -82,6 +88,7 @@ $(document).ready(function () {
         game.state = compCharacterSel();
         console.log(userCharacter);
         game.step += 1;
+        return "charaSel"
       } else {;}
       } )
       }
@@ -157,9 +164,7 @@ $(document).ready(function () {
       } else {;}
       }
 
-    function win () {
-      
-    }
+    
 
 
      // display the results of the attack state ------------------------------------------------------------------------------------------------------------------------
@@ -176,6 +181,33 @@ $(document).ready(function () {
     } else {;}
     }
 
+    
+
+$(".reset").on("click", function () {
+  reset();
+});
+
+    function reset(){
+      $(".chara-button").remove();
+      console.log(game);
+      game.state = charaSel();
+      userCharacter = "";
+      computerCharacter = "";
+      game.step = 0;
+      game.opponents = 3;
+      $(".wins-text").text(game.wins);
+      $(".lose-text").text(game.losses);
+      admiralAkbar.hp = 90;
+      admiralAkbar.attack = 2;
+      chewbaca.hp = 120;
+      chewbaca.attack = 20;
+      bobbaFett.hp = 95;
+      bobbaFett.attack = 20 
+      darthVader.hp = 200;
+      darthVader.attack = 10;
+      createCharacterDiv();
+      charaSel();
+    }
 
   // primary game object.
   var game = {
@@ -184,6 +216,6 @@ $(document).ready(function () {
     opponents: 3,
     wins:0,
     losses:0,
-  }
+    }
 
   })
